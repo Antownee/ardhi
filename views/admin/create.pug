@@ -1,0 +1,79 @@
+doctype html
+html(lang='en')
+  include includes/head.pug
+  body
+    #wrapper
+      // Navigation
+      include includes/nav.pug
+      #page-wrapper
+        // /.row
+        .row
+          .col-lg-12
+            h1.page-header Create new posting
+          .col-lg-12
+            if success
+                .alert.alert-success.alert-dismissable
+                  button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+                  |  Successfully saved your listing!
+            else if error
+              .alert.alert-danger.alert-dismissable
+                  button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+                  |  #{error}
+          .col-lg-12
+            if nserror
+              .alert.alert-warning.alert-dismissable
+                button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+                | #{nserror} add funds to your account (> 150 XEM) then click 
+                a.alert-link(href='/admin/createns') create namespace.
+                
+            if nssuccess
+              h3 #{nssuccess}
+            if nscreateerror
+              .alert.alert-warning.alert-dismissable
+                button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+                | #{nscreateerror} 
+            if nscreatesuccess
+              .alert.alert-success.alert-dismissable
+                  button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+                  |  #{nscreatesuccess}
+
+          // /.col-lg-4
+
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Enter details about your new listing
+              .panel-body
+                .row
+                  .col-lg-7
+                    form(role='form', method='post')
+                      .form-group
+                        label Title
+                        input.form-control(name="listingTitle")
+                      .form-group
+                        label Location
+                        input.form-control(name="listingLocation")
+                      .form-group
+                        label Amount (XEM)
+                        input.form-control(name="listingAmount", type="number")
+                      .form-group
+                        label Description
+                        textarea.form-control(rows='3',name="listingDescription")
+                      if nserror || nscreateerror
+                        button.btn.btn-default.disabled(type='submit') Submit Button
+                      if nssuccess || nscreatesuccess
+                        button.btn.btn-default(type='submit') Submit Button
+          // /.col-lg-4
+      // /#page-wrapper
+    // /#wrapper
+    // jQuery
+    script(src='../vendor/jquery/jquery.min.js')
+    // Bootstrap Core JavaScript
+    script(src='../vendor/bootstrap/js/bootstrap.min.js')
+    // Metis Menu Plugin JavaScript
+    script(src='../vendor/metisMenu/metisMenu.min.js')
+    // Morris Charts JavaScript
+    script(src='../vendor/raphael/raphael.min.js')
+    script(src='../vendor/morrisjs/morris.min.js')
+    // Custom Theme JavaScript
+    script(src='../dist/js/sb-admin-2.js')

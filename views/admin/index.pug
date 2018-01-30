@@ -1,0 +1,136 @@
+doctype html
+html(lang='en')
+  include includes/head.pug
+  body
+    #wrapper
+      // Navigation
+      include includes/nav.pug
+      #page-wrapper
+        .row
+          .col-lg-12
+            h1.page-header Dashboard
+          // /.col-lg-12
+          // /.row
+          .row
+            .col-lg-4.col-md-6
+              .panel.panel-primary
+                .panel-heading
+                  .row
+                    .col-xs-3
+                      i.fa.fa-comments.fa-5x
+                    .col-xs-9.text-right
+                      if results
+                        .huge #{results.listingscount}
+                      else 
+                        .huge 0
+                      div Land listings
+                a(href='#')
+                  .panel-footer
+                    span.pull-left View Details
+                    span.pull-right
+                      i.fa.fa-arrow-circle-right
+                    .clearfix
+            .col-lg-4.col-md-6
+              .panel.panel-green
+                .panel-heading
+                  .row
+                    .col-xs-3
+                      i.fa.fa-tasks.fa-5x
+                    .col-xs-9.text-right
+                      if results
+                        .huge #{results.reqlistscount}
+                      else
+                        .huge 0
+                      div Pending lease Requests
+                a(href='#')
+                  .panel-footer
+                    span.pull-left View Details
+                    span.pull-right
+                      i.fa.fa-arrow-circle-right
+                    .clearfix
+            .col-lg-4.col-md-6
+              .panel.panel-yellow
+                .panel-heading
+                  .row
+                    .col-xs-3
+                      i.fa.fa-shopping-cart.fa-5x
+                    .col-xs-9.text-right
+                      if results
+                        .huge #{results.balance}
+                      else 
+                        .huge 0
+                      div Account balance (XEM)
+                a(href='#')
+                  .panel-footer
+                    span.pull-left View Details
+                    span.pull-right
+                      i.fa.fa-arrow-circle-right
+                    .clearfix
+          // /.row
+          .row
+            .col-lg-12
+              h1.page-header My listings
+            // /.col-lg-4
+            .col-lg-12
+              if results.listings
+                each list in results.listings
+                  .panel.panel-info
+                    .panel-heading
+                      h4 #{list.title} 
+                    .panel-body
+                      .row
+                        .col-lg-2
+                          img(src='http://via.placeholder.com/400x400', height='200')
+                        .col-lg-10
+                          strong
+                            | #{list.location}
+                          p
+                            | #{list.description}
+              else
+                p
+                  | No listings available
+            // /.col-lg-4
+            // /.row
+          .row
+              .col-lg-12
+                h1.page-header Pending lease requests
+              // /.col-lg-4
+              .col-lg-12
+                if results.reqlists
+                  each req in results.reqlists
+                    .panel.panel-yellow
+                      .panel-heading
+                        h4 #{req.listing.title} 
+                      .panel-body
+                        .row
+                          .col-lg-2
+                            img(src='http://via.placeholder.com/400x400', height='200')
+                          .col-lg-10
+                            p
+                              | Leaser address: 
+                              strong #{req.request.requestingAddress}
+                            p
+                              | Request complete:  
+                              strong #{req.request.status}
+                            p
+                              | Location: 
+                              strong #{req.listing.location}
+                            p
+                              | #{req.listing.description}
+                        .row
+                          .col-lg-12
+                            p
+                              | &nbsp
+                            span.pull-right
+                              - var requrl = "/admin/accept/" + req.request.landRequestID;
+                              form
+                                button.btn.btn-info.btn-circle.btn-lg(type='submit', href=requrl, formaction=requrl)
+                                  i.fa.fa-check
+                else  
+                  p
+                    | No requests available
+
+      // /#page-wrapper
+      // /#wrapper
+      include includes/footer.pug
+

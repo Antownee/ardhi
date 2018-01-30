@@ -1,0 +1,66 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Lease contract
+  body
+    h3 Land Lease Contract #{leaseID}
+    p
+      | This agreement, a contract, sets forth the terms as a binding agreement between the 
+      br
+      | lessee 
+      strong #{leaseeAddress} 
+      | and the 
+      br
+      | leaser 
+      strong #{leaserAddress}
+      br
+      | executed on this day 
+      strong #{commencementDate}
+    p The following terms are set forth:
+    ol(type='1')
+      li
+        p
+          | The purpose of this contract permits the lessee 
+          strong #{leaseeAddress} 
+          br
+          | exclusive use of the land owned by leaser 
+          strong #{leaserAddress} 
+          | for 
+          br
+          | the purpose of farming (arable land only).
+      li
+        p
+          | The attached description denotes the land to be utilized in this agreement. The 
+          br
+          | land base consists of 
+          strong #{size} 
+          | acres of which 
+          strong #{size} 
+          | acres are farmable.
+      li
+        p
+          | The land will be leased at the rate of 
+          strong #{cost} 
+          | XEM per year (12 months). 
+          br 
+          | This shall be payable no more than 30 days prior to the beginning date of annual contract.
+          br
+      li
+        p
+          | The farming annual contract period shall commence on 
+          strong #{commencementDate} 
+          | and 
+          br
+          | This agreement shall be renewable every 5 years after which renogtiations will take place.
+    p
+      | The above terms has been reviewed and are in mutual agreement between both the lessee and 
+      br
+      |  the leaser on this date 
+      strong #{commencementDate}
+    p
+      | Lessee: 
+      strong #{leaseeAddress}
+    p
+      | Leaser: 
+      strong #{leaserAddress}

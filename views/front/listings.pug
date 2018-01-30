@@ -1,0 +1,103 @@
+doctype html
+html.no-js
+    head
+        include includes/head.pug
+    body
+        #fh5co-page
+            header#fh5co-header(role='banner')
+                .container
+                    .row
+                        .header-inner
+                            include includes/nav.pug
+            .fh5co-page-title(style='background-image: url(images/slide_6.jpg);')
+                .overlay
+                .container
+                    .row
+                        .col-md-12.animate-box
+                            h1
+                                span.colored All
+                                |  Listings
+            #best-deal
+                .container
+                    .row
+                        .col-md-8.col-md-offset-2.text-center.fh5co-heading.animate-box(data-animate-effect='fadeIn')
+                            h2 Pick a listing from below
+
+                        each listing in listings
+                            .col-md-4.item-block.animate-box(data-animate-effect='fadeIn')
+                                .fh5co-property
+                                    figure
+                                        img.img-responsive(src='images/slide_2.jpg')
+                                    .fh5co-property-innter
+                                        h3
+                                            a(href='#') #{listing.title}
+                                        .price-status
+                                            span.price #{listing.amount} XEM
+                                        p
+                                            | #{listing.description} 
+                                    p.fh5co-property-specification
+                                        - var listingurl = listing.listingID
+                                        a.btn.btn-primary(class="myRequest" data-listingID=listing.listingID data-listingAmount=listing.amount) Request
+                    
+
+
+            include includes/footer.pug
+
+        // jQuery
+        script(src='js/jquery.min.js')
+        // jQuery Easing
+        script(src='js/jquery.easing.1.3.js')
+        // Bootstrap
+        script(src='js/bootstrap.min.js')
+        // Waypoints
+        script(src='js/jquery.waypoints.min.js')
+        // Flexslider
+        script(src='js/jquery.flexslider-min.js')
+        // MAIN JS
+        script(src='js/main.js')
+        script(src='https://unpkg.com/sweetalert/dist/sweetalert.min.js')
+
+
+        script.
+            $(".myRequest").on('click', function(e) {
+                console.log('clicked');
+                var listingID = this.getAttribute("data-listingID");
+                var listingAmount = this.getAttribute("data-listingAmount");
+                console.log(listingAmount)
+                //Need to extract an ID from the button. This will be sent with the address to the API
+                swal({
+                    text: 'Enter your NEM address to complete your request for lease.',
+                    content: "input",
+                    button: {
+                        text: "Request",
+                        closeModal: false,
+                    },
+                })
+                .then(address => {
+                    if (!address) throw null;
+                    
+                    return fetch(`/post-request`, {
+                        method: 'POST',
+                        body: JSON.stringify({requestingAddress: address, listingID: listingID, amount: listingAmount}), //amount of listng should be added
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
+                        })
+                    });
+
+                    //return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`);
+                })
+                .then((res)=>{
+                    swal("Congratulations!", "Your request has been successfully placed.", "success");
+                })
+                .catch(err => {
+                    if (err) {
+                        swal("Sorry!", "The request failed. Try again later", "error");
+                    } else {
+                        swal.stopLoading();
+                        swal.close();
+                    }
+                });
+            });
+
+
+

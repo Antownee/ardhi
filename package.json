@@ -1,0 +1,31 @@
+{
+  "name": "ardhi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "chance": "^1.0.13",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "html-pdf": "^2.2.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0",
+    "nem-sdk": "^1.6.2",
+    "pug": "^2.0.0-rc.4",
+    "request": "^2.83.0",
+    "serve-favicon": "^2.4.5",
+    "shortid": "^2.2.8"
+  }
+}

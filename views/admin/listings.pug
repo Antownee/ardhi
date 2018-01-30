@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  include includes/head.pug
+  body
+    #wrapper
+      // Navigation
+      include includes/nav.pug
+      #page-wrapper
+        // /.row
+        .row
+          .col-lg-12
+            h1.page-header Land listings
+          // /.col-lg-4
+          .col-lg-12
+            .panel.panel-success
+              .panel-heading
+                | Success Panel
+              .panel-body
+                .col-lg-2
+                  img(src='http://via.placeholder.com/400x400', alt='Smiley face', height='200')
+                .col-lg-10
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+          // /.col-lg-4
+      // /#page-wrapper
+    // /#wrapper
+    // jQuery
+    script(src='../vendor/jquery/jquery.min.js')
+    // Bootstrap Core JavaScript
+    script(src='../vendor/bootstrap/js/bootstrap.min.js')
+    // Metis Menu Plugin JavaScript
+    script(src='../vendor/metisMenu/metisMenu.min.js')
+    // Morris Charts JavaScript
+    script(src='../vendor/raphael/raphael.min.js')
+    script(src='../vendor/morrisjs/morris.min.js')
+    // Custom Theme JavaScript
+    script(src='../dist/js/sb-admin-2.js')
